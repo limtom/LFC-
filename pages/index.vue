@@ -1,23 +1,25 @@
 <template>
   <v-row justify="center" align="center" no-gutters class="fill-height">
     <v-col cols="12" sm="12" md="12" class="fill-height">
-      <l-map
-        style="height: 90vh;" 
-        :zoom="zoom"
-        :center="center"
-        class="fill-height"
-      >
-        <l-control-layers position="topright"></l-control-layers>
-        <l-tile-layer
-          v-for="tileProvider in tileProviders"
-          :key="tileProvider.name"
-          :name="tileProvider.name"
-          :visible="tileProvider.visible"
-          :url="tileProvider.url"
-          :attribution="tileProvider.attribution"
-          layer-type="base"
-        />
-      </l-map>
+      <client-only>
+        <l-map
+          style="height: 90vh;"
+          :zoom="zoom"
+          :center="center"
+          class="fill-height"
+        >
+          <l-control-layers position="topright"></l-control-layers>
+          <l-tile-layer
+            v-for="tileProvider in tileProviders"
+            :key="tileProvider.name"
+            :name="tileProvider.name"
+            :visible="tileProvider.visible"
+            :url="tileProvider.url"
+            :attribution="tileProvider.attribution"
+            layer-type="base"
+          />
+        </l-map>
+      </client-only>
     </v-col>
   </v-row>
 </template>
