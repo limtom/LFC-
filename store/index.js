@@ -16,13 +16,13 @@ export const state = () => ({
         {
             location:
                 'Oluwakemi centre Apakila junction, opposite Baale’s house, camp',
-            'contact-person': 'Mrs salami Bro. Olayinka',
+            'contact-person': 'Mrs salami & Bro. Olayinka',
             'phone-number': [],
         },
         {
             location:
                 'Hephzibah centre No 10, Salami close, opposite St James Ang. Church, Fatola Estate, Camp',
-            'contact-person': 'Dcns Olulola, Mr Salami',
+            'contact-person': 'Dcns Olulola & Mr Salami',
             'phone-number': ['08035551834', '08033857178'],
         },
         {
@@ -43,7 +43,7 @@ export const state = () => ({
         {
             location:
                 'Dominion Home cell Flat 8 Senior Staff Qrts. 11, OORBDA, Alabata Rd, Abeokuta',
-            'contact-person': 'Mr. OjoMayowa Assistant Sis. Ojo',
+            'contact-person': 'Mr. Ojo Mayowa & Assistant Sis. Ojo',
             'phone-number': ['08055551834'],
         },
         {
@@ -304,23 +304,6 @@ export const getters = {
     //Get all wsf center from the state
     getWsfcenter(state) {
         return state.wsfCenters
-    },
-
-    //Get a particular wsf center based on phone number
-    getWsfcenterByPhonenumber(getWsfcenter, inputttedPhoneNumber) {
-        //Check to see if the phone number is a string
-        if (typeof inputtedPhoneNumber.trim() === 'string') {
-            return getWsfcenter.filter((wsfCenter) => {
-                //Check for the length of the phone number array
-                if (wsfCenter['phone-number'].length > 1) {
-                    return wsfCenter['phone-number'].find((phoneNumber) => {
-                        return phoneNumber == inputttedPhoneNumber
-                    })
-                } else {
-                    return wsfCenter['phone-number'] == inputttedPhoneNumber
-                }
-            })
-        }
     },
 }
 
