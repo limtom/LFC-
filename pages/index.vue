@@ -20,7 +20,6 @@
           />
         </l-map>
       </client-only>
-      v
     </v-col>
   </v-row>
 </template>
