@@ -17,7 +17,7 @@ export const state = () => ({
             location:
                 'Oluwakemi centre Apakila junction, opposite Baale’s house, camp',
             'contact-person': 'Mrs salami & Bro. Olayinka',
-            'phone-number': [],
+            'phone-number': ['08067025461'],
         },
         {
             location:
@@ -225,23 +225,23 @@ export const state = () => ({
         },
         {
             location: 'Amazing Grace Building beside Sofela hostel, Aregbe',
-            'contact-person': '',
-            'phone-number': [],
+            'contact-person': 'Pst. Thomas',
+            'phone-number': ['08063377339'],
         },
         {
             location: 'No.4, God is Able off Toko-taya Street,Aregbe.',
-            'contact-person': '',
-            'phone-number': [],
+            'contact-person': 'Mr. Obayemi',
+            'phone-number': ['08030611819'],
         },
         {
-            location: 'behindMoongate hotel, Aregbe.',
-            'contact-person': '',
-            'phone-number': [],
+            location: 'behind Moongate hotel, Aregbe.',
+            'contact-person': 'Mr. Uwabor',
+            'phone-number': ['08060144509'],
         },
         {
             location: 'No.35, Ojoo-Oba, Oke Area off Aregbe.',
-            'contact-person': '',
-            'phone-number': [],
+            'contact-person': 'Pst Laniyan',
+            'phone-number': ['08034359132'],
         },
         {
             location: '18, Oluwanisola Street, EbamidupeEst, OdoEran',
@@ -255,24 +255,24 @@ export const state = () => ({
         },
         {
             location: 'PROSPERITY',
-            'contact-person': '',
-            'phone-number': [],
+            'contact-person': 'Mr. Seyi Oke',
+            'phone-number': ['09038619601'],
         },
         {
             location:
                 'No.3, Ore Ofe Street. adjacent Baba Ijesha house, Akingbala, Eleweran.',
-            'contact-person': '',
-            'phone-number': [],
+            'contact-person': 'Mrs Obi',
+            'phone-number': ['08036972960'],
         },
         {
             location: 'Mrs Oluwatoyin house Ebenezer clinic(sofiya clinic) fajol',
             'contact-person': 'Sister Rachel',
-            'phone-number': [],
+            'phone-number': ['07030057042'],
         },
         {
             location: 'Ogunbona close, Fajol Estate, Obantoko',
-            'contact-person': 'Sister blessing',
-            'phone-number': [],
+            'contact-person': 'Elder Adesile',
+            'phone-number': ['08034923487'],
         },
         {
             location: 'Fajol Estate, Obantoko',
@@ -296,19 +296,39 @@ export const state = () => ({
             'contact-person': 'Dcns Coker',
             'phone-number': ['08022117322'],
         },
+        {
+            location:
+                'No 13 B Oke-yeke Road',
+            'contact-person': 'Olatomiwa',
+            'phone-number': ['07061091424'],
+        },
     ],
+    newWsfCenters:[]
 })
 
 //Create the getter object
 export const getters = {
     //Get all wsf center from the state
-    getWsfcenter(state) {
+    getWsfcenters(state) {
         return state.wsfCenters
     },
+
+    //Get the new wsf center 
+    getNewWsfCenters(state) {
+        return state.newWsfCenters
+    }
 }
 
 //Create the mutation and export it
-export const mutations = {}
+export const mutations = {
+    SET_NEW_WSF_CENTERS(state, payload) {
+        return state.newWsfCenters.push(payload)
+    }
+}
 
 //Create an action
-export const actions = {}
+export const actions = {
+    setNewWsfCenters({ commit }, payload) {
+    commit("SET_NEW_WSF_CENTERS", payload);
+  },
+}
