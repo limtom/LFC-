@@ -303,7 +303,8 @@ export const state = () => ({
             'phone-number': ['07061091424'],
         },
     ],
-    newWsfCenters:[]
+    newWsfCenters: [],
+    dialog: false,
 })
 
 //Create the getter object
@@ -323,12 +324,20 @@ export const getters = {
 export const mutations = {
     SET_NEW_WSF_CENTERS(state, payload) {
         return state.newWsfCenters.push(payload)
-    }
+    },
+
+    SHOW_DIALOG(state, payload) {
+        return (state.dialog = payload);
+    },
 }
 
 //Create an action
 export const actions = {
     setNewWsfCenters({ commit }, payload) {
-    commit("SET_NEW_WSF_CENTERS", payload);
-  },
+        commit("SET_NEW_WSF_CENTERS", payload);
+    },
+
+    showDialog({ commit }, payload) {
+        commit("SHOW_DIALOG", payload);
+    },
 }

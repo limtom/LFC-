@@ -5,11 +5,11 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer absolute app>
+    <!-- <v-footer absolute app>
       <span class="text-center text-body-2 mx-auto">
         &copy; {{ new Date().getFullYear() }}
       </span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
