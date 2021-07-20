@@ -48,15 +48,15 @@
         elevation="16"
         dismissible
       >
-        Sorry you can't continue with this operation, as you have to be at your
-        WSF center venue
+        Sorry you can't continue with this operation at the moment, as you have
+        to be at the venue of your home cell.
       </v-alert>
     </v-col>
     <v-dialog
       v-model="$store.state.dialog"
       persistent
       max-width="290"
-      style="z-index: 10000;"
+      style="z-index: 300000;"
     >
       <v-card class="d-flex flex-column justify-center">
         <v-card-title class="text-h5 mx-auto">
@@ -121,6 +121,7 @@ export default {
       userLocation: {},
       wsfVenue: false,
       notAtWsfCenter: false,
+      success: false,
     }
   },
   layout: 'AddLocation',
@@ -157,15 +158,16 @@ export default {
           ? { ...center[0], geoLoc: this.userLocation }
           : 'WSF center not found'
 
-      //Reset the form
-      this.$refs.geoform.reset()
-
       //Save the info if the wesf center was found
       if (center.length > 0) {
         //Pass the location info and phone number to mutate the store
         this.addGeolocationCoord(this.wsfCenterFound)
+      } else {
+        this.$router.push('/notfound')
       }
 
+      //Reset the form
+      this.$refs.geoform.reset()
       console.log(this.wsfCenterFound)
     },
 
@@ -173,6 +175,9 @@ export default {
     addGeolocationCoord() {
       //Dispatch an action that will mutate the corresponding data on the state
       this.$store.dispatch('setNewWsfCenters', this.wsfCenterFound)
+      this.$store.dispatch('setLatestUpdate', this.wsfCenterFound)
+      //route to the success page
+      this.$router.push('/success')
     },
 
     //Open the dialog on page load

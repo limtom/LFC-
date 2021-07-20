@@ -305,6 +305,7 @@ export const state = () => ({
     ],
     newWsfCenters: [],
     dialog: false,
+    latestUpdate: {},
 })
 
 //Create the getter object
@@ -329,6 +330,10 @@ export const mutations = {
     SHOW_DIALOG(state, payload) {
         return (state.dialog = payload);
     },
+
+    SET_LATEST_UPDATE(state, payload) {
+        return state.latestUpdate = payload
+    }
 }
 
 //Create an action
@@ -340,4 +345,8 @@ export const actions = {
     showDialog({ commit }, payload) {
         commit("SHOW_DIALOG", payload);
     },
+
+    setLatestUpdate({ commit }, payload) {
+        commit('SET_LATEST_UPDATE', payload)
+    }
 }
