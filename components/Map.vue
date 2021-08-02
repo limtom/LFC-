@@ -67,6 +67,7 @@ export default {
         //Set the location status and extract the position information
         this.locationReady = true
         this.userLocation = event.latlng
+        console.log(this.userLocation)
 
         //Emit an event to send to the parent
         this.$emit('locationReady', {

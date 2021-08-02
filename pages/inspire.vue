@@ -1,25 +1,44 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row justify="center" align="center" no-gutters>
     <v-col cols="12" sm="8" md="6" justify="center" align="center">
       <v-form
         ref="geoform"
         v-on:submit.prevent="validateForm(coordinatorInfo.phoneNumber)"
         v-if="!notAtWsfCenter"
       >
-        <v-card class="d-flex flex-column mx-auto" max-width="400">
-          <v-card-title class="text-h6 font-weight-light mt-5 mb-5 mx-auto">
-            Add a WSF location
+        <v-card
+          class="d-flex flex-column mx-auto"
+          max-width="400"
+          tile
+          color="orange lighten-2"
+          elevation="0"
+        >
+          <v-card-title
+            class="d-flex flex-column text-h6 font-weight-light mx-auto white--text text--darken-4"
+          >
+            <v-img
+              :src="require('~/static/LFC-logo2.png')"
+              max-width="60"
+              max-height="60"
+              position="center center"
+              light
+              eager
+            ></v-img>
+            WSF center Info
           </v-card-title>
           <v-card-text>
             <v-text-field
-              class="text-body-1"
+              class="text-body-2"
               name="Phone-number"
               label="Phone-number"
               id="id"
               outlined
+              rounded
               dense
               type="number"
               prefix="+234"
+              color="white"
+              flat
               v-model="coordinatorInfo.phoneNumber"
               :disabled="!locationStatus"
               :rules="phoneRules"
@@ -34,8 +53,16 @@
           </v-card-text>
           <v-card-actions class="pa-4">
             <v-spacer />
-            <v-btn color="primary" type="submit">
-              Continue
+            <v-btn
+              color="red"
+              type="submit"
+              class="text-capitalize font-weight-light white--text"
+              rounded
+              outlined
+              width="100"
+              elevation="0"
+            >
+              Submit
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -67,11 +94,14 @@
           existing WSF centers database, hence you are expected to fill it at
           your respective WSF center.
           <em class="font-weight-bold">i.e. the venue of the Home cell.</em>
+          Also don't forget to switch on your phone location to make the phone
+          number field active.
           <v-checkbox
             label="Are you at the WSF venue"
             v-model="wsfVenue"
             hide-details
             dense
+            color="success"
             class="text-caption"
           ></v-checkbox>
         </v-card-text>
@@ -146,19 +176,19 @@ export default {
     getCenter(inputttedPhoneNumber) {
       let center = this.getWsfcenters.filter((wsfCenter) => {
         //Check for the length of the phone number array
-        if (wsfCenter['phone-number'].length > 1) {
-          wsfCenter['phone-number'].find((phoneNumber) => {
+        if (wsfCenter['phone_numbers'].length > 1) {
+          wsfCenter['phone_numbers'].find((phoneNumber) => {
             return phoneNumber == inputttedPhoneNumber
           })
         }
-        return wsfCenter['phone-number'] == inputttedPhoneNumber
+        return wsfCenter['phone_numbers'] == inputttedPhoneNumber
       })
       this.wsfCenterFound =
         center.length > 0
           ? { ...center[0], geoLoc: this.userLocation }
           : 'WSF center not found'
 
-      //Save the info if the wesf center was found
+      //Save the info if the wsf center was found
       if (center.length > 0) {
         //Pass the location info and phone number to mutate the store
         this.addGeolocationCoord(this.wsfCenterFound)
@@ -168,16 +198,15 @@ export default {
 
       //Reset the form
       this.$refs.geoform.reset()
-      console.log(this.wsfCenterFound)
     },
 
     //Add the geo location information
     addGeolocationCoord() {
       //Dispatch an action that will mutate the corresponding data on the state
-      this.$store.dispatch('setNewWsfCenters', this.wsfCenterFound)
       this.$store.dispatch('setLatestUpdate', this.wsfCenterFound)
       //route to the success page
       this.$router.push('/success')
+      console.log(this.wsfCenterFound)
     },
 
     //Open the dialog on page load
@@ -207,5 +236,9 @@ export default {
 
 .v-label {
   font-size: 12px !important;
+}
+.v-input__control .v-text-field .v-input__slot {
+  background-color: white !important;
+  color: #000;
 }
 </style>

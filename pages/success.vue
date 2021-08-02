@@ -3,7 +3,7 @@
     <v-alert
       prominent
       type="success"
-      class="text-h6 pa-5 font-weight-light text-center"
+      class="text-h6 pa-5 font-weight-light text-center ml-sm-4 mr-sm-4"
       elevation="16"
       max-width="500px"
     >
